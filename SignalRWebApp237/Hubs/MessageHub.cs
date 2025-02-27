@@ -13,5 +13,10 @@ namespace SignalRWebApp237.Hubs
         {
             await Clients.Others.SendAsync("ReceiveDisconnectInfo", "User Disconnected");
         }
+
+        public async Task SendMessage(string message,double data)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", message + "'s Offer is ", data);
+        }
     }
 }
