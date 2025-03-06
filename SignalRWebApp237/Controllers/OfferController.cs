@@ -22,6 +22,20 @@ namespace SignalRWebApp237.Controllers
             return data;
         }
 
+        [HttpGet("Room")]
+        public async Task<double> Get(string room)
+        {
+            return await _fileService.Read(room);
+        }
+
+        [HttpGet("IncreaseRoom")]
+        public async Task<ActionResult> IncreaseRoom(string room,double data)
+        {
+            var result = await _fileService.Read(room) + data;
+            await _fileService.Write(room, result);
+            return Ok(result);
+        }
+
         [HttpGet("Increase")]
         public async Task<ActionResult> Increase(double data)
         {
@@ -29,5 +43,6 @@ namespace SignalRWebApp237.Controllers
             await _fileService.Write(result);
             return Ok(result);
         }
+
     }
 }
